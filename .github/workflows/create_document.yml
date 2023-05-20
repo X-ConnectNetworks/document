@@ -48,7 +48,7 @@ jobs:
           done < ${{ vars.BASIS_NAME }}_list
       - name: Create Index
         run: |
-          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ vars.PROJ_NAME }}
+          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
       - name: Count changes
         id: changes_auth
         run: |
@@ -84,7 +84,7 @@ jobs:
           done < ${{ vars.BASIS_NAME }}_list
       - name: Create Index
         run: |
-          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ vars.PROJ_NAME }}
+          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
       - name: Count changes
         id: changes_cm
         run: |
