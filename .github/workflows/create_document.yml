@@ -46,6 +46,9 @@ jobs:
           do
             ./resource_list.sh ${BASIS}
           done < ./Auth_list
+      - name: test
+        run: |
+          echo ${{ env.RESOURCE_LIST_FILE_NAME }}
       - name: Count changes
         id: changes_auth
         run: |
@@ -58,7 +61,7 @@ jobs:
           git fetch
           git merge
           git add .
-          git commit -m "$(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
+          git commit -m "GitHub Actions $(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
           git push
         if: steps.changes_auth.outputs.count > 0
   cm_create_document:
@@ -91,6 +94,6 @@ jobs:
           git fetch
           git merge
           git add .
-          git commit -m "$(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
+          git commit -m "GitHub Actions $(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
           git push
         if: steps.changes_cm.outputs.count > 0
