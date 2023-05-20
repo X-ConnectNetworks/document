@@ -28,38 +28,26 @@ defaults:
     working-directory: "./"
 
 jobs:
-  checkout_repository:
+  auth_create_document:
     name: "Checkout Repository"
+    environment: auth_dev
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: test1
-        run: |
-          pwd; ls -l ./
-  create_document:
-    name: "Create Document"
-    runs-on: ubuntu-latest
-    needs: checkout_repository
-    steps:
       - name: Configure AWS credential
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
-      - name: test2
-        run: |
-          pwd; ls -l ./
       - name: Create Document
         run: |
-          ./resource_list.sh ECR
-  git_commit:
-    name: "Git Commit"
-    runs-on: ubuntu-latest
-    needs: create_document
-    steps:
+          while read BASIS
+          do
+            ./resource_list.sh ${BASIS}
+          done < ${{ env.RESOURCE_LIST_FILE_NAME }}
       - name: Count changes
-        id: changes
+        id: changes_auth
         run: |
           git add -N .
           echo "count=$(git diff --name-only | wc -l)" >> $GITHUB_OUTPUT
@@ -70,4 +58,35 @@ jobs:
           git add .
           git commit -m "$(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
           git push
-        if: steps.changes.outputs.count > 0
+        if: steps.changes_auth.outputs.count > 0
+  cm_create_document:
+    name: "Checkout Repository"
+    environment: auth_cm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Configure AWS credential
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+      - name: Create Document
+        run: |
+          while read BASIS
+          do
+            ./resource_list.sh ${BASIS}
+          done < ${{ env.RESOURCE_LIST_FILE_NAME }}
+      - name: Count changes
+        id: changes_cm
+        run: |
+          git add -N .
+          echo "count=$(git diff --name-only | wc -l)" >> $GITHUB_OUTPUT
+      - name: Commit & Push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "$(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
+          git push
+        if: steps.changes_cm.outputs.count > 0
