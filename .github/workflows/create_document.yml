@@ -45,7 +45,7 @@ jobs:
           while read BASIS
           do
             ./resource_list.sh ${BASIS}
-          done < ${{ env.RESOURCE_LIST_FILE_NAME }}
+          done < ./Auth_list
       - name: Count changes
         id: changes_auth
         run: |
