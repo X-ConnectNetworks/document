@@ -30,7 +30,7 @@ defaults:
 
 jobs:
   auth_create_document:
-    name: "${{ vars.BASIS_NAME }} Create Document"
+    name: "Auth Create Document"
     environment: auth_dev
     runs-on: ubuntu-latest
     steps:
@@ -66,8 +66,8 @@ jobs:
           git push
         if: steps.changes_auth.outputs.count > 0
   cm_create_document:
+    name: "Cm Create Document"
     environment: cm_dev
-    name: "${{ vars.BASIS_NAME }} Create Document"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
