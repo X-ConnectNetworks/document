@@ -2,21 +2,21 @@ name: "Create Document"
 
 on:
   schedule:
-    - cron: '20 7 * * *'
+    - cron: '0 18 * * *'
   workflow_dispatch:
 
 permissions:
   id-token: write
-  actions: write
-  checks: write
+#  actions: write
+#  checks: write
   contents: write
-  deployments: write
-  issues: write
-  packages: write
-  pull-requests: write
-  repository-projects: write
-  security-events: write
-  statuses: write
+#  deployments: write
+#  issues: write
+#  packages: write
+#  pull-requests: write
+#  repository-projects: write
+#  security-events: write
+#  statuses: write
 
 env:
   AWS_REGION: ap-northeast-1
