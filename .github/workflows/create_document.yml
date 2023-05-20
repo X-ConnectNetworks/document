@@ -41,7 +41,7 @@ jobs:
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
       - name: Create Document
         run: |
-          ./resource_list.sh S3
+          ./resource_list.sh Route53
       - name: Count changes
         id: changes
         run: |
