@@ -48,7 +48,7 @@ jobs:
           done < ./Auth_list
       - name: test
         run: |
-          echo ${{ env.RESOURCE_LIST_FILE_NAME }}
+          echo ${{ vars.RESOURCE_LIST_FILE_NAME }}
       - name: Count changes
         id: changes_auth
         run: |
