@@ -34,6 +34,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: test1
+        run: |
+          ls -l ./
   create_document:
     name: "Create Document"
     runs-on: ubuntu-latest
@@ -47,6 +50,9 @@ jobs:
       - name: Create Document
         run: |
           ./resource_list.sh ECR
+      - name: test2
+        run: |
+          ls -l ./
   git_commit:
     name: "Git Commit"
     runs-on: ubuntu-latest
