@@ -29,5 +29,9 @@ jobs:
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
-      - name: S3ls
-        run: aws s3 ls
+      - name: Create Document
+        run: |
+          ./resource_list.sh EC2
+      - name: check
+        run: |
+          ls -l ./docs/
