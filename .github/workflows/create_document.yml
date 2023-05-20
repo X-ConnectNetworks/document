@@ -37,6 +37,7 @@ jobs:
   create_document:
     name: "Create Document"
     runs-on: ubuntu-latest
+    needs: checkout_repository
     steps:
       - name: Configure AWS credential
         uses: aws-actions/configure-aws-credentials@v2
@@ -49,6 +50,7 @@ jobs:
   git_commit:
     name: "Git Commit"
     runs-on: ubuntu-latest
+    needs: create_document
     steps:
       - name: Count changes
         id: changes
