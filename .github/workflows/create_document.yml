@@ -20,6 +20,7 @@ permissions:
 
 env:
   AWS_REGION: ap-northeast-1
+  PROJ_NAME: "TestProject"
 
 defaults:
   run:
@@ -47,7 +48,7 @@ jobs:
           done < ${{ vars.BASIS_NAME }}_list
       - name: Create Index
         run: |
-          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }}
+          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ vars.PROJ_NAME }}
       - name: Count changes
         id: changes_auth
         run: |
@@ -83,7 +84,7 @@ jobs:
           done < ${{ vars.BASIS_NAME }}_list
       - name: Create Index
         run: |
-          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }}
+          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ vars.PROJ_NAME }}
       - name: Count changes
         id: changes_cm
         run: |
