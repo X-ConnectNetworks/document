@@ -34,4 +34,4 @@ jobs:
           ./resource_list.sh EC2
       - name: check
         run: |
-          ls -l ./docs/
+          cat ./docs/EC2_list.md
