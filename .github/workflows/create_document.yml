@@ -46,7 +46,7 @@ jobs:
         id: changes
         run: |
           git add -N . # 新規ファイルを含める
-          echo "::set-output name=count::$(git diff --name-only | wc -l)"
+          echo "count=$(git diff --name-only | wc -l) >> $GITHUB_OUTPUT"
       - name: Commit & Push
         run: |
           git config user.name github-actions
