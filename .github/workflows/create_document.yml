@@ -62,6 +62,7 @@ jobs:
   cm_create_document:
     name: "Checkout Repository"
     environment: auth_cm
+    needs: auth_create_document
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
