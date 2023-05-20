@@ -2,7 +2,7 @@ name: "Create Document"
 
 on:
   schedule:
-    - cron: "0 16 * * *"
+    - cron: "4 7 * * *"
   workflow_dispatch:
 
 permissions:
