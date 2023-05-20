@@ -17,7 +17,7 @@ do
   fi
 
   PARAM_FILE_NAME_HTML=$(echo ${PARAM_FILE_NAME} | sed -e "s/\.md$/.html/g")
-  echo "- [${PARAM_FILE_NAME}](${BASE_URL}/${GHPAGES_DIR}/${PARAM_FILE_NAME_HTML})" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
+  echo "- [${PARAM_FILE_NAME}](${BASE_URL}${GHPAGES_DIR}/${PARAM_FILE_NAME_HTML})" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
 done < ${CONTENTS_TMP}
 
 rm -f ${CONTENTS_TMP}
