@@ -49,7 +49,6 @@ jobs:
           echo "::set-output name=count::$(git diff --name-only | wc -l)"
       - name: Commit & Push
         run: |
-          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/~
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
