@@ -1,9 +1,6 @@
 name: "Create Document"
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     - cron: '20 7 * * *'
   workflow_dispatch:
@@ -31,12 +28,16 @@ defaults:
     working-directory: "./"
 
 jobs:
-  create_document:
-    name: "Create Document"
+  checkout_repository:
+    name: "Checkout Repository"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+  create_document:
+    name: "Create Document"
+    runs-on: ubuntu-latest
+    steps:
       - name: Configure AWS credential
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -45,6 +46,10 @@ jobs:
       - name: Create Document
         run: |
           ./resource_list.sh ECR
+  git_commit:
+    name: "Git Commit"
+    runs-on: ubuntu-latest
+    steps:
       - name: Count changes
         id: changes
         run: |
