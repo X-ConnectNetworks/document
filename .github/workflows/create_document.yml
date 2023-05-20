@@ -44,11 +44,8 @@ jobs:
         run: |
           while read BASIS
           do
-            ./resource_list.sh ${BASIS}
-          done < ./Auth_list
-      - name: test
-        run: |
-          echo ${{ vars.RESOURCE_LIST_FILE_NAME }}
+            ./resource_list.sh -o "docs/${{ vars.BASIS_NAME }}/${{ vars.ENVIRONMENT_NAME }}" ${BASIS}
+          done < ${{ vars.BASIS_NAME }}_list
       - name: Count changes
         id: changes_auth
         run: |
@@ -80,8 +77,8 @@ jobs:
         run: |
           while read BASIS
           do
-            ./resource_list.sh ${BASIS}
-          done < ./Cm_list
+            ./resource_list.sh -o "docs/${{ vars.BASIS_NAME }}/${{ vars.ENVIRONMENT_NAME }}" ${BASIS}
+          done < ${{ vars.BASIS_NAME }}_list
       - name: Count changes
         id: changes_cm
         run: |
