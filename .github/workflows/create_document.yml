@@ -2,7 +2,7 @@ name: "Create Document"
 
 on:
   schedule:
-    - cron: "4 7 * * *"
+    - cron: '15 7 * * *'
   workflow_dispatch:
 
 permissions:
@@ -28,7 +28,7 @@ defaults:
     working-directory: "./"
 
 jobs:
-  preview:
+  create_document:
     name: "Create Document"
     runs-on: ubuntu-latest
     steps:
