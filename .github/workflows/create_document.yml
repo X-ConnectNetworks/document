@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v3
       - name: test1
         run: |
-          ls -l ./
+          pwd; ls -l ./
   create_document:
     name: "Create Document"
     runs-on: ubuntu-latest
@@ -47,12 +47,12 @@ jobs:
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+      - name: test2
+        run: |
+          pwd; ls -l ./
       - name: Create Document
         run: |
           ./resource_list.sh ECR
-      - name: test2
-        run: |
-          ls -l ./
   git_commit:
     name: "Git Commit"
     runs-on: ubuntu-latest
