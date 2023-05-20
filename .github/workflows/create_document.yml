@@ -7,7 +7,17 @@ on:
 
 permissions:
   id-token: write
-  contents: read
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+
 
 env:
   AWS_REGION: ap-northeast-1
@@ -39,6 +49,7 @@ jobs:
           echo "::set-output name=count::$(git diff --name-only | wc -l)"
       - name: Commit & Push
         run: |
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/~
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
