@@ -21,6 +21,7 @@ permissions:
 env:
   AWS_REGION: ap-northeast-1
   PROJ_NAME: "TestProject"
+  ENVIRONMENT_NAME: "dev"
 
 defaults:
   run:
@@ -29,7 +30,7 @@ defaults:
 
 jobs:
   auth_create_document:
-    name: "Checkout Repository"
+    name: "${{ vars.BASIS_NAME }} Create Document"
     environment: auth_dev
     runs-on: ubuntu-latest
     steps:
@@ -44,11 +45,11 @@ jobs:
         run: |
           while read BASIS
           do
-            ./resource_list.sh -o "docs/${{ vars.BASIS_NAME }}/${{ vars.ENVIRONMENT_NAME }}" ${BASIS}
+            ./resource_list.sh -o "docs/${{ vars.BASIS_NAME }}/${{ env.ENVIRONMENT_NAME }}" ${BASIS}
           done < ${{ vars.BASIS_NAME }}_list
       - name: Create Index
         run: |
-          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
+          ./contents.sh ${{ vars.BASIS_NAME }} ${{ env.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
       - name: Count changes
         id: changes_auth
         run: |
@@ -65,8 +66,8 @@ jobs:
           git push
         if: steps.changes_auth.outputs.count > 0
   cm_create_document:
-    name: "Checkout Repository"
-    environment: auth_cm
+    environment: cm_dev
+    name: "${{ vars.BASIS_NAME }} Create Document"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -80,11 +81,11 @@ jobs:
         run: |
           while read BASIS
           do
-            ./resource_list.sh -o "docs/${{ vars.BASIS_NAME }}/${{ vars.ENVIRONMENT_NAME }}" ${BASIS}
+            ./resource_list.sh -o "docs/${{ vars.BASIS_NAME }}/${{ env.ENVIRONMENT_NAME }}" ${BASIS}
           done < ${{ vars.BASIS_NAME }}_list
       - name: Create Index
         run: |
-          ./contents.sh ${{ vars.BASIS_NAME }} ${{ vars.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
+          ./contents.sh ${{ vars.BASIS_NAME }} ${{ env.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
       - name: Count changes
         id: changes_cm
         run: |
