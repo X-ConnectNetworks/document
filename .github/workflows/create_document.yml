@@ -27,7 +27,7 @@ jobs:
           - "auth"
           - "cm"
     name: "${{ matrix.basis_name }} Create Document"
-    environment: ${{ matrix.basis_name }}_${{ env.ENVIRONMENT_NAME }}
+    environment: ${{ matrix.basis_name }}_dev
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
