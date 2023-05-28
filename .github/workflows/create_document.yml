@@ -20,14 +20,14 @@ defaults:
     working-directory: "./"
 
 jobs:
-  auth_create_document:
+  create_document:
     strategy:
       matrix:
         basis_name:
           - "auth"
           - "cm"
     name: "${{ matrix.basis_name }} Create Document"
-    environment: ${{ matrix.basis_name }}_dev
+    environment: ${{ matrix.basis_name }}_${{ env.ENVIRONMENT_NAME }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
