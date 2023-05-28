@@ -61,39 +61,4 @@ jobs:
           git commit -m "GitHub Actions $(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
           git push
         if: steps.changes_auth.outputs.count > 0
-#  cm_create_document:
-#    name: "Cm Create Document"
-#    environment: cm_dev
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v3
-#      - name: Configure AWS credential
-#        uses: aws-actions/configure-aws-credentials@v2
-#        with:
-#          aws-region: ${{ env.AWS_REGION }}
-#          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
-#      - name: Create Document
-#        run: |
-#          while read BASIS
-#          do
-#            ./resource_list.sh -o "docs/${{ vars.BASIS_NAME }}/${{ env.ENVIRONMENT_NAME }}" ${BASIS}
-#          done < ${{ vars.BASIS_NAME }}_list
-#      - name: Create Index
-#        run: |
-#          ./contents.sh ${{ vars.BASIS_NAME }} ${{ env.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
-#      - name: Count changes
-#        id: changes_cm
-#        run: |
-#          git add -N .
-#          echo "count=$(git diff --name-only | wc -l)" >> $GITHUB_OUTPUT
-#      - name: Commit & Push
-#        run: |
-#          git config user.name github-actions
-#          git config user.email github-actions@github.com
-#          git fetch
-#          git merge
-#          git add .
-#          git commit -m "GitHub Actions $(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
-#          git push
-#        if: steps.changes_cm.outputs.count > 0
+
