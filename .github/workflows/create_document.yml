@@ -46,11 +46,6 @@ jobs:
       - name: Create Index
         run: |
           ./contents.sh ${{ vars.BASIS_NAME }} ${{ env.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
-      - name: Upload Pages Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: pages
-          path: docs
       - name: Count changes
         id: changes_auth
         run: |
