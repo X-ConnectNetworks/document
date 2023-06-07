@@ -5,5 +5,6 @@
 |:--|:--|:--|:--|
 |al2023test|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/al2023test|MUTABLE|AES256|
 |githubtest|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/githubtest|MUTABLE|AES256|
+|h4b-ecs-helloworld|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld|MUTABLE|AES256|
 |ksnet-webapp|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/ksnet-webapp|MUTABLE|AES256|
 
