@@ -13,5 +13,6 @@
 |_b1da049d165fa23300650abe1aea589c.ksnet.work.|CNAME|_81a205e755d8f56901cf121e3afce98f.btkxpdzscj.acm-validations.aws.|300|
 |ksnet.work.|NS|ns-827.awsdns-39.net.<br>ns-1432.awsdns-51.org.<br>ns-200.awsdns-25.com.<br>ns-1906.awsdns-46.co.uk.|172800|
 |ksnet.work.|SOA|ns-827.awsdns-39.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400|900|
+|s3cors.ksnet.work.|A|s3-website-ap-northeast-1.amazonaws.com.|-|
 |step.ksnet.work.|A|13.231.44.42|300|
 
