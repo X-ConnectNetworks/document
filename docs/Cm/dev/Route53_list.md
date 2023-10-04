@@ -15,4 +15,5 @@
 |ksnet.work.|SOA|ns-827.awsdns-39.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400|900|
 |s3cors.ksnet.work.|A|s3-website-ap-northeast-1.amazonaws.com.|-|
 |step.ksnet.work.|A|13.231.44.42|300|
+|www.ksnet.work.|A|dbybgb242hih5.cloudfront.net.|-|
 
