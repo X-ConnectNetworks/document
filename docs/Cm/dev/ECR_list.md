@@ -5,6 +5,7 @@
 |:--|:--|:--|:--|
 |al2023test|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/al2023test|MUTABLE|AES256|
 |bg_image|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/bg_image|MUTABLE|AES256|
+|cdk-hnb659fds-container-assets-335417439444-ap-northeast-1|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/cdk-hnb659fds-container-assets-335417439444-ap-northeast-1|IMMUTABLE|AES256|
 |githubtest|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/githubtest|MUTABLE|AES256|
 |h4b-ecs-helloworld|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld|MUTABLE|AES256|
 |ksnet-webapp|335417439444.dkr.ecr.ap-northeast-1.amazonaws.com/ksnet-webapp|MUTABLE|AES256|
