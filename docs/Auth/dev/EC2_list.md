@@ -5,4 +5,6 @@
 |:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
 |testinstance|i-0a07e277fc04f6ffe|t2.micro|Linux/UNIX|x86_64|ami-012261b9035f8f938|ap-northeast-1a|-|10.1.0.125|ksnet-dev-opmng-sg|testrole|
 |testinstance|i-0e1868c5a76e70bb1|t2.micro|Linux/UNIX|x86_64|ami-012261b9035f8f938|ap-northeast-1a|-|10.1.0.39|ksnet-dev-opmng-sg|testrole|
+|testinstance1|i-00d1c56e8a9f38bfe|t2.micro|Linux/UNIX|x86_64|ami-012261b9035f8f938|ap-northeast-1a|54.249.23.12|10.20.0.207|VPC-A-sg|SessionManager-Role|
+|testinstance2|i-09019cc18e208f902|t2.micro|Linux/UNIX|x86_64|ami-012261b9035f8f938|ap-northeast-1a|18.183.213.28|10.30.4.69|VPC-B-sg|SessionManager-Role|
 
