@@ -3,10 +3,7 @@
 
 |名前|インスタンスID|インスタンスタイプ|プラットフォーム|アーキテクチャ|AMI ID|AZ|パブリックIP|プライベートIP|セキュリティグループ|ロール名|
 |:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
-|aws-rhel-01|i-074f21154eaae87d5|t2.micro|Red Hat BYOL Linux|x86_64|ami-03f6eeb7ded3bbfd2|ap-northeast-1a|54.199.26.131|10.1.0.253|ksnet-dev-opmng-sg|testrole|
 |testinstance|i-0a07e277fc04f6ffe|t2.micro|Linux/UNIX|x86_64|ami-012261b9035f8f938|ap-northeast-1a|-|10.1.0.125|ksnet-dev-opmng-sg|testrole|
 |testinstance|i-0e1868c5a76e70bb1|t2.micro|Linux/UNIX|x86_64|ami-012261b9035f8f938|ap-northeast-1a|-|10.1.0.39|ksnet-dev-opmng-sg|testrole|
-|testinstance2|i-09019cc18e208f902|t2.micro|Linux/UNIX|x86_64|ami-012261b9035f8f938|ap-northeast-1a|18.183.213.28|10.30.4.69|VPC-B-sg|ec2-flowlog|
-|testinstance3|i-0d7e1af4891e52e4f|t2.micro|Linux/UNIX|x86_64|ami-05a03e6058638183d|ap-northeast-1c|54.248.138.72|10.30.24.44|VPC-B-sg|ec2-flowlog|
-|testinstance4|i-0271fcefa8c571bdd|t2.micro|Linux/UNIX|x86_64|ami-0b193da66bc27147b|ap-northeast-1a|13.231.155.249|10.20.9.144|VPC-A-sg|ec2-flowlog|
+|testinstance1|i-03b3168842a970fe3|t2.micro|Linux/UNIX|x86_64|ami-0b5c74e235ed808b9|ap-northeast-1a|57.180.34.253|10.1.0.113|ksnet-dev-opmng-sg|testrole|
 
