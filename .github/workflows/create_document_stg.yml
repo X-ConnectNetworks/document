@@ -27,7 +27,7 @@ env:
   RESOURCE_LIST_DIR: "resource_list"
   AWS_REGION: ap-northeast-1
   PROJ_NAME: "TestProject"
-  ENVIRONMENT_NAME: "all"
+  BASIS_NAME: "X-ConnectNetworks"
 
 defaults:
   run:
