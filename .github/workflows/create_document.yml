@@ -1,3 +1,15 @@
+# =========================================================
+#
+# パラメータ一覧＆GitHub Pages作成 GitHub Actions
+#
+# シェル内で指定している変数以外にも、以下の変数を設定すること。
+# Environment secrets
+#   AWS_IAM_ROLE_ARN="AWS側でOIDCを受け付けるIAMロールのARN"
+# Environment variables
+#   BASIS_NAME="基盤名（一覧格納先ディレクトリ名等に使用）"
+# Repository variables
+#   GH_PAGES_URL="GitHub PagesのURL"
+# =========================================================
 name: "Create Document"
 
 on:
@@ -10,9 +22,12 @@ permissions:
   contents: write
 
 env:
+  CREATE_DOCUMENT_SHELL_NAME: "create_document.sh"
+  CREATE_CONTENTS_SHELL_NAME: "contents.sh"
+  RESOURCE_LIST_DIR: "resource_list"
   AWS_REGION: ap-northeast-1
   PROJ_NAME: "TestProject"
-  ENVIRONMENT_NAME: "dev"
+  ENVIRONMENT_NAME: "all"
 
 defaults:
   run:
@@ -23,31 +38,32 @@ jobs:
   create_document:
     strategy:
       matrix:
-        basis_name:
-          - "auth"
-          - "cm"
-    name: "${{ matrix.basis_name }} Create Document"
-    environment: ${{ matrix.basis_name }}_dev
+        basis_env_name:
+          - "dev"
+          - "stg"
+          - "prd"
+    name: "${{ matrix.basis_env_name }} Create Document"
+    environment: ${{ matrix.basis_env_name }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Configure AWS credential
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
       - name: Create Document
         run: |
-          while read BASIS
+          while read RESOURCE
           do
-            ./resource_list.sh -o "docs/${{ vars.BASIS_NAME }}/${{ env.ENVIRONMENT_NAME }}" ${BASIS}
-          done < ${{ vars.BASIS_NAME }}_list
+            ./${{ env.CREATE_DOCUMENT_SHELL_NAME }} -o "docs/${{ vars.BASIS_NAME }}/${{ matrix.basis_env_name }}" ${RESOURCE}
+          done < ${{ env.RESOURCE_LIST_DIR }}/${{ matrix.basis_env_name }}_list
       - name: Create Index
         run: |
-          ./contents.sh ${{ vars.BASIS_NAME }} ${{ env.ENVIRONMENT_NAME }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
+          ./${{ env.CREATE_CONTENTS_SHELL_NAME }} ${{ vars.BASIS_NAME }} ${{ matrix.basis_env_name }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
       - name: Count changes
-        id: changes_auth
+        id: changes
         run: |
           git add -N .
           echo "count=$(git diff --name-only | wc -l)" >> $GITHUB_OUTPUT
@@ -55,9 +71,9 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git pull
+          git fetch
+          git merge
           git add .
           git commit -m "GitHub Actions $(TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S')"
           git push
-        if: steps.changes_auth.outputs.count > 0
-
+        if: steps.changes.outputs.count > 0
