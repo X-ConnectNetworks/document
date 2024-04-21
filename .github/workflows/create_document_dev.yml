@@ -14,7 +14,7 @@ name: "dev Create Document"
 
 on:
   schedule:
-    - cron: '0 18 * * *'
+    - cron: '10 18 * * *'
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,7 @@ env:
   RESOURCE_LIST_DIR: "resource_list"
   AWS_REGION: ap-northeast-1
   PROJ_NAME: "TestProject"
-  ENVIRONMENT_NAME: "all"
+  BASIS_NAME: "X-ConnectNetworks"
 
 defaults:
   run:
@@ -55,11 +55,11 @@ jobs:
         run: |
           while read RESOURCE
           do
-            ./${{ env.CREATE_DOCUMENT_SHELL_NAME }} -o "docs/${{ vars.BASIS_NAME }}/${{ matrix.basis_env_name }}" ${RESOURCE}
+            ./${{ env.CREATE_DOCUMENT_SHELL_NAME }} -o "docs/${{ env.BASIS_NAME }}/${{ matrix.basis_env_name }}" ${RESOURCE}
           done < ${{ env.RESOURCE_LIST_DIR }}/${{ matrix.basis_env_name }}_list
       - name: Create Index
         run: |
-          ./${{ env.CREATE_CONTENTS_SHELL_NAME }} ${{ vars.BASIS_NAME }} ${{ matrix.basis_env_name }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
+          ./${{ env.CREATE_CONTENTS_SHELL_NAME }} ${{ env.BASIS_NAME }} ${{ matrix.basis_env_name }} ${{ vars.GH_PAGES_URL }} ${{ env.PROJ_NAME }}
       - name: Count changes
         id: changes
         run: |
