@@ -41,7 +41,6 @@ jobs:
         basis_env_name:
           - "dev"
           - "stg"
-          - "prd"
     name: "${{ matrix.basis_env_name }} Create Document"
     environment: ${{ matrix.basis_env_name }}
     runs-on: ubuntu-latest
