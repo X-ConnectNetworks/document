@@ -10,11 +10,11 @@
 # Repository variables
 #   GH_PAGES_URL="GitHub PagesのURL"
 # =========================================================
-name: "Create Document"
+name: "stg Create Document"
 
 on:
   schedule:
-    - cron: '0 18 * * *'
+    - cron: '10 18 * * *'
   workflow_dispatch:
 
 permissions:
@@ -39,7 +39,6 @@ jobs:
     strategy:
       matrix:
         basis_env_name:
-          - "dev"
           - "stg"
     name: "${{ matrix.basis_env_name }} Create Document"
     environment: ${{ matrix.basis_env_name }}
