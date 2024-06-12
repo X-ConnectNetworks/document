@@ -34,7 +34,7 @@ do
     continue
   fi
 
-  echo "- [${DIAGRAM_FILE_NAME}](${BASE_URL}${GHPAGES_DIR}/${DIAGRAM_FILE_NAME})" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
+  echo "![${DIAGRAM_FILE_NAME}](${BASE_URL}${GHPAGES_DIR}/${DIAGRAM_FILE_NAME})" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
 done < ${DIAGRAM_TMP}
 
 rm -f ${CONTENTS_TMP}
