@@ -26,7 +26,7 @@ done < ${CONTENTS_TMP}
 
 ## 構成図用
 echo "" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
-echo "## ${GHPAGES_DIR} 構成図" >| ${DOCS_DIR}/${INDEX_FILE_NAME}
+echo "## ${GHPAGES_DIR} 構成図" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
 
 while read DIAGRAM_FILE_NAME
 do
