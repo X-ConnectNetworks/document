@@ -1,5 +1,6 @@
 #!/bin/bash
 CONTENTS_TMP=".contents.tmp"
+DIAGRAM_TMP=".diagram.tmp"
 INDEX_FILE_NAME="index.md"
 BASE_URL="$3"
 
@@ -7,7 +8,8 @@ BASE_URL="$3"
 DOCS_DIR="docs/$1/$2"
 GHPAGES_DIR="$1/$2"
 
-ls ${DOCS_DIR} >| ${CONTENTS_TMP}
+ls ${DOCS_DIR} | grep -v .svg >| ${CONTENTS_TMP}
+ls ${DOCS_DIR} | grep .svg >| ${DIAGRAM_TMP}
 
 echo "# ${GHPAGES_DIR} パラメータ一覧" >| ${DOCS_DIR}/${INDEX_FILE_NAME}
 echo "" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
@@ -22,7 +24,21 @@ do
   echo "- [${PARAM_FILE_NAME}](${BASE_URL}${GHPAGES_DIR}/${PARAM_FILE_NAME_HTML})" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
 done < ${CONTENTS_TMP}
 
+## 構成図用
+echo "" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
+echo "## ${GHPAGES_DIR} 構成図" >| ${DOCS_DIR}/${INDEX_FILE_NAME}
+
+while read DIAGRAM_FILE_NAME
+do
+  if [ "${DIAGRAM_FILE_NAME}" = "${INDEX_FILE_NAME}" ]; then
+    continue
+  fi
+
+  echo "- [${DIAGRAM_FILE_NAME}](${BASE_URL}${GHPAGES_DIR}/${DIAGRAM_FILE_NAME})" >> ${DOCS_DIR}/${INDEX_FILE_NAME}
+done < ${DIAGRAM_TMP}
+
 rm -f ${CONTENTS_TMP}
+rm -f ${DIAGRAM_TMP}
 
 # 環境一覧作成
 DOCS_DIR="docs/$1"
